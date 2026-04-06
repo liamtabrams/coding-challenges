@@ -175,3 +175,30 @@ class Solution(object):
         return curr_diff
 
         
+class Solution(object):
+    """
+    Variant 4:
+    Probably the most logical and elegant approach if not among the most efficient. This
+    is Sachin's 'Easy Greedy Solution | Beats 100%' taken from the solution section. I wish
+    I had the patience to try to arrive at this method on my own and thought there might be
+    a very clean way to do it like this, but I didn't see it through. 
+
+    This solution has time complexity O(n) and space complexity of O(1) (it is equivalent to 
+    'Approach #3 Single Scan Accepted' given in the Editorial Section). Thus it is highly
+    efficient. 
+
+    This implementation appears to beat about 50% of accepted submissions in run time and
+    memory efficiency.
+    """
+    def maxDistance(self, arrays):
+        smallest = arrays[0][0]
+        biggest = arrays[0][-1]
+        max_distance = 0
+
+        for i in range(1, len(arrays)):
+            arr = arrays[i]
+            max_distance = max(max_distance, abs(arr[-1] - smallest), abs(biggest - arr[0]))
+            smallest = min(smallest, arr[0])
+            biggest = max(biggest, arr[-1])
+
+        return max_distance
